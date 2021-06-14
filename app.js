@@ -1,6 +1,8 @@
-const names = require("./4-names");
-const sayHi = require("./5-utils");
-const data = require("./6-alternative-flavor");
-require("./7-mind-grenade");
-// sayHi(names.peter);
-// sayHi(names.john);
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+  res.write("Welcome Ashraf, to our server");
+  res.end();
+});
+
+server.listen(5000);
