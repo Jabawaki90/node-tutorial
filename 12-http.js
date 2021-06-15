@@ -10,7 +10,7 @@ const server = http.createServer((req, res) => {
 
   res.end(` <h1>OOOPS!</h1>
   <p>we cant seem to find</p>
-  <a>go back Home</a>`);
+  <a href="/"> go back Home </a>`);
 });
 
 server.listen(4000);

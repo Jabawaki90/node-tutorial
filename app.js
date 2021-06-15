@@ -1,16 +1,28 @@
-const http = require("http");
+const { readFile } = require("fs");
 
-const server = http.createServer((req, res) => {
-  if (req.url === "/") {
-    res.end("Welcome New Guy, to our server");
+const getText = (path) => {
+  return new Promise((resolve, reject) => {
+    readFile(path, "utf8", (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+};
+
+// getText("./content/first.txt")
+//   .then((result) => console.log(result))
+//   .catch((err) => console.log(err));
+
+const start = async () => {
+  try {
+    const first = await getText("/.content/first.txt");
+    console.log(first);
+  } catch (error) {
+    console.log("error");
   }
-  if (req.url === "/about") {
-    res.end("Welcome to our history");
-  }
+};
 
-  res.end(` <h1>OOOPS!</h1>
-  <p>we cant seem to find</p>
-  <a>go back Home</a>`);
-});
-
-server.listen(4000);
+start();
