@@ -1,34 +1,10 @@
-const { readFile, writeFile } = require("fs").promises;
-const util = require("util");
+// 'EventEmitter' mus in CAPITAL
+const EventEmitter = require("events");
 
-const readFilePromise = util.promisify(readFile);
-const writeFilePromise = util.promisify(writeFile);
+const customEmitter = new EventEmitter();
 
-const start = async () => {
-  try {
-    const first = await readFile("/.content/first.txt", "utf8");
-    const second = await readFile("/.content/second.txt", "utf8");
-    await writeFile("./content/mind-grenade.txt", `Hellow my friends: `);
-    console.log(first, second);
-  } catch (error) {
-    console.log("error");
-  }
-};
+customEmitter.on("terima", () => {
+  console.log("berjaya");
+});
 
-start();
-
-// const getText = (path) => {
-//   return new Promise((resolve, reject) => {
-//     readFile(path, "utf8", (err, data) => {
-//       if (err) {
-//         reject(err);
-//       } else {
-//         resolve(data);
-//       }
-//     });
-//   });
-// };
-
-// getText("./content/first.txt")
-//   .then((result) => console.log(result))
-//   .catch((err) => console.log(err));
+customEmitter.emit("terima");
